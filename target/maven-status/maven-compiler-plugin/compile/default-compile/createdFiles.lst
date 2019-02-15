@@ -1,0 +1,6 @@
+nl/wesleyblom/crypto/api/CurrencyRestController.class
+nl/wesleyblom/crypto/api/Application.class
+nl/wesleyblom/crypto/api/repository/CurrencyRepository.class
+nl/wesleyblom/crypto/api/model/Currency.class
+nl/wesleyblom/crypto/api/model/Currency$CurrencyBuilder.class
+nl/wesleyblom/crypto/api/model/Currency$1.class
