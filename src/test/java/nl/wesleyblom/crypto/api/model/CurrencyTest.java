@@ -52,7 +52,7 @@ public class CurrencyTest {
     @Test
     public void createCurrencyWithNameNullReturnsException() {
         try {
-            Currency currency = new CurrencyBuilder().withName(null).build();
+            Currency currency = new CurrencyBuilder().withName(null).withTicker(TICKER).build();
             fail("Should throw exception");
         } catch (Exception e) {
             assertEquals(VALIDATE_EXCEPTION_MESSAGE, e.getMessage());
@@ -62,14 +62,12 @@ public class CurrencyTest {
     @Test
     public void createCurrencyWithNameEmptyReturnsException() {
         try {
-            Currency currency = new CurrencyBuilder().withName("").build();
+            Currency currency = new CurrencyBuilder().withName("").withTicker(TICKER).build();
             fail("Should throw exception");
         } catch (Exception e) {
             assertEquals(VALIDATE_EXCEPTION_MESSAGE, e.getMessage());
         }
     }
-
-
 
     @Test
     public void createCurrencyWithNameLength24ReturnsSuccess() {
