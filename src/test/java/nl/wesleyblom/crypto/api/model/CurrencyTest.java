@@ -60,6 +60,120 @@ public class CurrencyTest {
     }
 
     @Test
+    public void createCurrencyWithNameEmptyReturnsException() {
+        try {
+            Currency currency = new CurrencyBuilder().withName("").build();
+            fail("Should throw exception");
+        } catch (Exception e) {
+            assertEquals(VALIDATE_EXCEPTION_MESSAGE, e.getMessage());
+        }
+    }
+
+
+
+    @Test
+    public void createCurrencyWithNameLength24ReturnsSuccess() {
+        Currency currency = null;
+        String validName = "abcdefghijklmnopqrstuvwx";
+
+        try {
+            currency = new CurrencyBuilder().withTicker(TICKER).withName(validName).build();
+        } catch (Exception e) {
+            fail("Exception thrown");
+        }
+        assertNotNull(currency);
+        assertEquals(validName, currency.getName());
+    }
+
+    @Test
+    public void createCurrencyWithNameLength25ReturnsSuccess() {
+        Currency currency = null;
+        String validName = "abcdefghijklmnopqrstuvwxy";
+
+        try {
+            currency = new CurrencyBuilder().withTicker(TICKER).withName(validName).build();
+        } catch (Exception e) {
+            fail("Exception thrown");
+        }
+        assertNotNull(currency);
+        assertEquals(validName, currency.getName());
+    }
+
+    @Test
+    public void createCurrencyWithNameLength26ReturnsException() {
+        Currency currency = null;
+        String invalidName = "abcdefghijklmnopqrstuvwxyz";
+
+        assertEquals(26, invalidName.length());
+
+        try {
+            currency = new CurrencyBuilder().withTicker(TICKER).withName(invalidName).build();
+            fail("Should throw exception");
+        } catch (Exception e) {
+            assertEquals(VALIDATE_EXCEPTION_MESSAGE, e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void createCurrencyWithTickerNullReturnsException() {
+        try {
+            Currency currency = new CurrencyBuilder().withTicker(null).build();
+            fail("Should throw exception");
+        } catch (Exception e) {
+            assertEquals(VALIDATE_EXCEPTION_MESSAGE, e.getMessage());
+        }
+    }
+
+    @Test
+    public void createCurrencyWithTickerEmptyReturnsException() {
+        try {
+            Currency currency = new CurrencyBuilder().withTicker("").build();
+            fail("Should throw exception");
+        } catch (Exception e) {
+            assertEquals(VALIDATE_EXCEPTION_MESSAGE, e.getMessage());
+        }
+    }
+
+    @Test
+    public void createCurrencyWithTickerLength4ReturnsSuccess() {
+        Currency currency = null;
+        String validTicker = "abcd";
+        try {
+            currency = new CurrencyBuilder().withTicker(validTicker).withName(NAME).build();
+        } catch (Exception e) {
+            fail("Exception thrown");
+        }
+        assertNotNull(currency);
+        assertEquals(validTicker, currency.getTicker());
+    }
+
+    @Test
+    public void createCurrencyWithTickerLength5ReturnsSuccess() {
+        Currency currency = null;
+        String validTicker = "abcde";
+        try {
+            currency = new CurrencyBuilder().withTicker(validTicker).withName(NAME).build();
+        } catch (Exception e) {
+            fail("Exception thrown");
+        }
+        assertNotNull(currency);
+        assertEquals(validTicker, currency.getTicker());
+    }
+
+    @Test
+    public void createCurrencyWithTickerLength6ReturnsException() {
+        Currency currency = null;
+        String invalidTicker = "abcdef";
+        try {
+            currency = new CurrencyBuilder().withTicker(invalidTicker).withName(NAME).build();
+            fail("Should throw exception");
+        } catch (Exception e) {
+            assertEquals(VALIDATE_EXCEPTION_MESSAGE, e.getMessage());
+        }
+    }
+
+    @Test
     public void createCurrencyWithLongTickerReturnsException() {
         try {
             Currency currency =
@@ -72,7 +186,7 @@ public class CurrencyTest {
     }
 
     @Test
-    public void creasteCurrencyWithOutTickerReturnsException() {
+    public void createCurrencyWithOutTickerReturnsException() {
         try {
             Currency currency = new CurrencyBuilder().withName(NAME).build();
             fail("Should throw exception");
